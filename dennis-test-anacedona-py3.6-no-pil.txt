@@ -1,0 +1,1007 @@
+Last login: Sun Mar 25 01:09:03 on ttys001
+
+------------------------------
+PATH
+/Developer/NVIDIA/CUDA-8.0/bin:/usr/local/cuda/bin:/Users/wsd/miniconda2/bin:/usr/local/cuda/bin:/Users/wsd/Library/Python/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Wireshark.app/Contents/MacOS
+
+CUDA_HOME
+/usr/local/cuda
+
+DYLD_LIBRARY_PATH
+/Developer/NVIDIA/CUDA-8.0/lib:/Developer/NVIDIA/cudnn-8.0/lib
+===============================
+
+testwhmbp:fastai wsd$ ls
+CODE-OF-CONDUCT.md	README.rst		fastai
+LICENSE			courses			requirements.txt
+MANIFEST		environment-cpu.yml	setup.cfg
+MANIFEST.in		environment-old.yml	setup.py
+README.md		environment.yml		tutorials
+testwhmbp:fastai wsd$ wget http://files.fast.ai/data/dogscats.zip
+--2018-03-25 01:19:50--  http://files.fast.ai/data/dogscats.zip
+Resolving files.fast.ai... 67.205.15.147
+Connecting to files.fast.ai|67.205.15.147|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 857214334 (818M) [application/zip]
+Saving to: ‘dogscats.zip’
+
+dogscats.zip        100%[===================>] 817.50M  3.20MB/s    in 5m 13s  
+
+2018-03-25 01:25:04 (2.61 MB/s) - ‘dogscats.zip’ saved [857214334/857214334]
+
+testwhmbp:fastai wsd$ ls
+CODE-OF-CONDUCT.md	courses			requirements.txt
+LICENSE			dogscats.zip		setup.cfg
+MANIFEST		environment-cpu.yml	setup.py
+MANIFEST.in		environment-old.yml	tutorials
+README.md		environment.yml
+README.rst		fastai
+testwhmbp:fastai wsd$ ls
+CODE-OF-CONDUCT.md	courses			requirements.txt
+LICENSE			data			setup.cfg
+MANIFEST		environment-cpu.yml	setup.py
+MANIFEST.in		environment-old.yml	tutorials
+README.md		environment.yml
+README.rst		fastai
+testwhmbp:fastai wsd$ conda 
+usage: conda [-h] [-V] command ...
+
+conda is a tool for managing and deploying applications, environments and packages.
+
+Options:
+
+positional arguments:
+  command
+    info         Display information about current conda install.
+    help         Displays a list of available conda commands and their help
+                 strings.
+    list         List linked packages in a conda environment.
+    search       Search for packages and display their information. The input
+                 is a Python regular expression. To perform a search with a
+                 search string that starts with a -, separate the search from
+                 the options with --, like 'conda search -- -h'. A * in the
+                 results means that package is installed in the current
+                 environment. A . means that package is not installed but is
+                 cached in the pkgs directory.
+    create       Create a new conda environment from a list of specified
+                 packages.
+    install      Installs a list of packages into a specified conda
+                 environment.
+    update       Updates conda packages to the latest compatible version. This
+                 command accepts a list of package names and updates them to
+                 the latest versions that are compatible with all other
+                 packages in the environment. Conda attempts to install the
+                 newest versions of the requested packages. To accomplish
+                 this, it may update some packages that are already installed,
+                 or install additional packages. To prevent existing packages
+                 from updating, use the --no-update-deps option. This may
+                 force conda to install older versions of the requested
+                 packages, and it does not prevent additional dependency
+                 packages from being installed. If you wish to skip dependency
+                 checking altogether, use the '--force' option. This may
+                 result in an environment with incompatible packages, so this
+                 option must be used with great caution.
+    upgrade      Alias for conda update. See conda update --help.
+    remove       Remove a list of packages from a specified conda environment.
+    uninstall    Alias for conda remove. See conda remove --help.
+    config       Modify configuration values in .condarc. This is modeled
+                 after the git config command. Writes to the user .condarc
+                 file (/Users/wsd/.condarc) by default.
+    clean        Remove unused packages and caches.
+    package      Low-level conda package utility. (EXPERIMENTAL)
+
+optional arguments:
+  -h, --help     Show this help message and exit.
+  -V, --version  Show the conda version number and exit.
+
+other commands, such as "conda build", are avaialble when additional conda
+packages (e.g. conda-build) are installed
+
+testwhmbp:fastai wsd$ conda env update
+Using Anaconda API: https://api.anaconda.org
+Fetching package metadata .................
+
+
+NoPackagesFoundError: Package missing in current osx-64 channels: 
+  - cuda90
+
+
+testwhmbp:fastai wsd$ conda install cuda90
+Fetching package metadata ...........
+
+
+PackageNotFoundError: Package missing in current osx-64 channels: 
+  - cuda90
+
+
+testwhmbp:fastai wsd$ conda install -c anaconda cudatoolkit 
+Fetching package metadata .............
+Solving package specifications: .
+
+Package plan for installation in environment /Users/wsd/anaconda:
+
+The following NEW packages will be INSTALLED:
+
+    cudatoolkit: 8.0-3             anaconda
+
+The following packages will be UPDATED:
+
+    anaconda:    4.3.1-np111py27_0          --> custom-py27h2cfa9e9_0 anaconda
+    conda:       4.3.17-py27_0              --> 4.5.0-py27_0          anaconda
+    pycosat:     0.6.1-py27_1               --> 0.6.3-py27h6c51c7e_0  anaconda
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+    conda-env:   2.6.0-0                    --> 2.6.0-h36134e3_0      anaconda
+
+Proceed ([y]/n)? y
+
+conda-env-2.6. 100% |################################| Time: 0:00:00   1.77 MB/s
+cudatoolkit-8. 100% |################################| Time: 0:26:43 210.14 kB/s
+cudatoolkit-8. 100% |################################| Time: 0:01:16   4.39 MB/s
+anaconda-custo 100% |################################| Time: 0:00:00   5.31 MB/s
+pycosat-0.6.3- 100% |################################| Time: 0:00:00  13.63 MB/s
+conda-4.5.0-py 100% |################################| Time: 0:00:00   2.35 MB/s
+testwhmbp:fastai wsd$ ls
+CODE-OF-CONDUCT.md	README.md		environment-cpu.yml	requirements.txt
+LICENSE			README.rst		environment-old.yml	setup.cfg
+MANIFEST		courses			environment.yml		setup.py
+MANIFEST.in		data			fastai			tutorials
+testwhmbp:fastai wsd$ conda env create -f environment.yml 
+Using Anaconda API: https://api.anaconda.org
+Solving environment: failed
+
+ResolvePackageNotFound: 
+  - cuda90
+
+testwhmbp:fastai wsd$ conda env create -f environment.yml 
+Using Anaconda API: https://api.anaconda.org
+Solving environment: failed
+
+ResolvePackageNotFound: 
+  - cuda80
+
+testwhmbp:fastai wsd$ conda env create -f environment.yml 
+Using Anaconda API: https://api.anaconda.org
+Solving environment: done
+
+Downloading and Extracting Packages
+wcwidth 0.1.7: ##################################################################################### | 100% 
+pcre 8.41: ######################################################################################### | 100% 
+libcxxabi 4.0.1: ################################################################################### | 100% 
+html5lib 1.0.1: #################################################################################### | 100% 
+pycparser 2.18: #################################################################################### | 100% 
+freetype 2.8: ###################################################################################### | 100% 
+qt 5.6.2: ########################################################################################## | 100% 
+pillow 5.0.0: ###################################################################################### | 100% 
+bokeh 0.12.14: ##################################################################################### | 100% 
+preshed 1.0.0: ##################################################################################### | 100% 
+pygments 2.2.0: #################################################################################### | 100% 
+numpydoc 0.7.0: #################################################################################### | 100% 
+bzip2 1.0.6: ####################################################################################### | 100% 
+spacy 2.0.9: ####################################################################################### | 100% 
+sqlite 3.22.0: ##################################################################################### | 100% 
+docutils 0.14: ##################################################################################### | 100% 
+widgetsnbextension 3.1.4: ########################################################################## | 100% 
+pyopenssl 17.5.0: ################################################################################## | 100% 
+imagesize 1.0.0: ################################################################################### | 100% 
+simplegeneric 0.8.1: ############################################################################### | 100% 
+readline 7.0: ###################################################################################### | 100% 
+dbus 1.12.2: ####################################################################################### | 100% 
+pandocfilters 1.4.2: ############################################################################### | 100% 
+pyyaml 3.12: ####################################################################################### | 100% 
+pickleshare 0.7.4: ################################################################################# | 100% 
+terminado 0.8.1: ################################################################################### | 100% 
+appnope 0.1.0: ##################################################################################### | 100% 
+heapdict 1.0.0: #################################################################################### | 100% 
+psutil 5.4.3: ###################################################################################### | 100% 
+cycler 0.10.0: ##################################################################################### | 100% 
+libcxx 4.0.1: ###################################################################################### | 100% 
+termcolor 1.1.0: ################################################################################### | 100% 
+pandas 0.22.0: ##################################################################################### | 100% 
+ipython 6.2.1: ##################################################################################### | 100% 
+chardet 3.0.4: ##################################################################################### | 100% 
+webencodings 0.5.1: ################################################################################ | 100% 
+libiconv 1.15: ##################################################################################### | 100% 
+sphinxcontrib 1.0: ################################################################################# | 100% 
+jupyter_core 4.4.0: ################################################################################ | 100% 
+expat 2.2.5: ####################################################################################### | 100% 
+prompt_toolkit 1.0.15: ############################################################################# | 100% 
+qtconsole 4.3.1: ################################################################################### | 100% 
+markupsafe 1.0: #################################################################################### | 100% 
+pyparsing 2.2.0: ################################################################################### | 100% 
+wheel 0.30.0: ###################################################################################### | 100% 
+sphinx 1.7.1: ###################################################################################### | 100% 
+glib 2.53.6: ####################################################################################### | 100% 
+scipy 1.0.0: ####################################################################################### | 100% 
+wrapt 1.10.11: ##################################################################################### | 100% 
+urllib3 1.22: ###################################################################################### | 100% 
+sphinxcontrib-websupport 1.0.1: #################################################################### | 100% 
+bcolz 1.1.2: ####################################################################################### | 100% 
+tblib 1.3.2: ####################################################################################### | 100% 
+jsonschema 2.6.0: ################################################################################## | 100% 
+parso 0.1.1: ####################################################################################### | 100% 
+snowballstemmer 1.2.1: ############################################################################# | 100% 
+ftfy 4.4.3: ######################################################################################## | 100% 
+sip 4.18.1: ######################################################################################## | 100% 
+jupyter_console 5.2.0: ############################################################################# | 100% 
+decorator 4.2.1: ################################################################################### | 100% 
+ncurses 6.0: ####################################################################################### | 100% 
+idna 2.6: ########################################################################################## | 100% 
+dask 0.17.2: ####################################################################################### | 100% 
+thinc 6.10.2: ###################################################################################### | 100% 
+click 6.7: ######################################################################################### | 100% 
+patsy 0.5.0: ####################################################################################### | 100% 
+python-dateutil 2.7.0: ############################################################################# | 100% 
+mistune 0.8.3: ##################################################################################### | 100% 
+yaml 0.1.7: ######################################################################################## | 100% 
+numpy 1.14.2: ###################################################################################### | 100% 
+ipykernel 4.8.2: ################################################################################### | 100% 
+libgfortran 3.0.1: ################################################################################# | 100% 
+hdf5 1.10.1: ####################################################################################### | 100% 
+toolz 0.9.0: ####################################################################################### | 100% 
+sortedcontainers 1.5.9: ############################################################################ | 100% 
+cryptography 2.2.1: ################################################################################ | 100% 
+requests 2.18.4: ################################################################################### | 100% 
+asn1crypto 0.24.0: ################################################################################# | 100% 
+statsmodels 0.8.0: ################################################################################# | 100% 
+ipython_genutils 0.2.0: ############################################################################ | 100% 
+babel 2.5.3: ####################################################################################### | 100% 
+matplotlib 2.2.2: ################################################################################## | 100% 
+ptyprocess 0.5.2: ################################################################################## | 100% 
+intel-openmp 2018.0.0: ############################################################################# | 100% 
+pandoc 1.19.2.1: ################################################################################### | 100% 
+pyzmq 17.0.0: ###################################################################################### | 100% 
+nbformat 4.4.0: #################################################################################### | 100% 
+jupyter_client 5.2.3: ############################################################################## | 100% 
+tqdm 4.19.5: ####################################################################################### | 100% 
+libpng 1.6.34: ##################################################################################### | 100% 
+nbconvert 5.3.1: ################################################################################### | 100% 
+ca-certificates 2017.08.26: ######################################################################## | 100% 
+cudnn 6.0: ######################################################################################### | 100% 
+bleach 2.1.3: ###################################################################################### | 100% 
+typing 3.6.4: ###################################################################################### | 100% 
+numexpr 2.6.4: ##################################################################################### | 100% 
+pip 9.0.1: ######################################################################################### | 100% 
+icu 58.2: ########################################################################################## | 100% 
+seaborn 0.8.1: ##################################################################################### | 100% 
+cffi 1.11.5: ####################################################################################### | 100% 
+lzo 2.10: ########################################################################################## | 100% 
+mkl 2018.0.2: ###################################################################################### | 100% 
+libxml2 2.9.7: ##################################################################################### | 100% 
+locket 0.2.0: ###################################################################################### | 100% 
+partd 0.3.8: ####################################################################################### | 100% 
+setuptools 38.5.1: ################################################################################# | 100% 
+jinja2 2.10: ####################################################################################### | 100% 
+distributed 1.21.4: ################################################################################ | 100% 
+cytoolz 0.8.2: ##################################################################################### | 100% 
+libedit 3.1: ####################################################################################### | 100% 
+entrypoints 0.2.3: ################################################################################# | 100% 
+zeromq 4.2.3: ###################################################################################### | 100% 
+regex 2017.11.09: ################################################################################## | 100% 
+testpath 0.3.1: #################################################################################### | 100% 
+pytz 2018.3: ####################################################################################### | 100% 
+gettext 0.19.8.1: ################################################################################## | 100% 
+olefile 0.45.1: #################################################################################### | 100% 
+kiwisolver 1.0.1: ################################################################################## | 100% 
+jpeg 9b: ########################################################################################### | 100% 
+ipywidgets 7.1.2: ################################################################################## | 100% 
+cymem 1.31.2: ###################################################################################### | 100% 
+msgpack-python 0.4.8: ############################################################################## | 100% 
+pytorch 0.3.1: ##################################################################################### | 100% 
+notebook 5.4.1: #################################################################################### | 100% 
+ujson 1.35: ######################################################################################## | 100% 
+pyqt 5.6.0: ######################################################################################## | 100% 
+python 3.6.4: ###################################################################################### | 100% 
+send2trash 1.5.0: ################################################################################## | 100% 
+cloudpickle 0.5.2: ################################################################################# | 100% 
+libtiff 4.0.9: ##################################################################################### | 100% 
+openssl 1.0.2n: #################################################################################### | 100% 
+certifi 2018.1.18: ################################################################################# | 100% 
+zict 0.1.3: ######################################################################################## | 100% 
+jupyter 1.0.0: ##################################################################################### | 100% 
+zlib 1.2.11: ####################################################################################### | 100% 
+cudatoolkit 8.0: ################################################################################### | 100% 
+traitlets 4.3.2: ################################################################################### | 100% 
+msgpack-numpy 0.4.1: ############################################################################### | 100% 
+libffi 3.2.1: ###################################################################################### | 100% 
+path.py 11.0: ###################################################################################### | 100% 
+murmurhash 0.28.0: ################################################################################# | 100% 
+jedi 0.11.1: ####################################################################################### | 100% 
+pexpect 4.4.0: ##################################################################################### | 100% 
+pytables 3.4.2: #################################################################################### | 100% 
+xz 5.2.3: ########################################################################################## | 100% 
+tk 8.6.7: ########################################################################################## | 100% 
+libsodium 1.0.15: ################################################################################## | 100% 
+plac 0.9.6: ######################################################################################## | 100% 
+dask-core 0.17.2: ################################################################################## | 100% 
+tornado 4.5.3: ##################################################################################### | 100% 
+six 1.11.0: ######################################################################################## | 100% 
+alabaster 0.7.10: ################################################################################## | 100% 
+pysocks 1.6.8: ##################################################################################### | 100% 
+packaging 17.1: #################################################################################### | 100% 
+dill 0.2.7.1: ###################################################################################### | 100% 
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Collecting torchvision>=0.1.9 (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 1))
+  Downloading torchvision-0.2.0-py2.py3-none-any.whl (48kB)
+    100% |████████████████████████████████| 51kB 4.2MB/s 
+Collecting opencv-python (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 2))
+  Downloading opencv_python-3.4.0.12-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl (41.2MB)
+    100% |████████████████████████████████| 41.2MB 39kB/s 
+Collecting isoweek (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 3))
+  Downloading isoweek-1.3.3-py2.py3-none-any.whl
+Collecting pandas_summary (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 4))
+  Downloading pandas-summary-0.0.41.tar.gz
+Collecting torchtext (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+  Downloading torchtext-0.2.1-py3-none-any.whl (41kB)
+    100% |████████████████████████████████| 51kB 8.1MB/s 
+Collecting graphviz (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 6))
+  Downloading graphviz-0.8.2-py2.py3-none-any.whl
+Collecting sklearn_pandas (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 7))
+  Downloading sklearn_pandas-1.6.0-py2.py3-none-any.whl
+Collecting feather-format (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 8))
+  Downloading feather-format-0.4.0.tar.gz
+Collecting jupyter_contrib_nbextensions (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading jupyter_contrib_nbextensions-0.4.0-py2.py3-none-any.whl (20.8MB)
+    100% |████████████████████████████████| 20.8MB 67kB/s 
+Collecting plotnine (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+  Downloading plotnine-0.3.0-py2.py3-none-any.whl (3.4MB)
+    100% |████████████████████████████████| 3.4MB 363kB/s 
+Collecting awscli (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Downloading awscli-1.14.63-py2.py3-none-any.whl (1.2MB)
+    100% |████████████████████████████████| 1.2MB 1.2MB/s 
+Collecting kaggle-cli (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading kaggle-cli-0.12.13.tar.gz
+Requirement already satisfied: ipywidgets in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: pillow>=4.1.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 1))
+Requirement already satisfied: numpy in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 1))
+Requirement already satisfied: torch in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 1))
+Requirement already satisfied: six in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 1))
+Requirement already satisfied: pandas in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 4))
+Requirement already satisfied: requests in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: tqdm in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: scipy>=0.14 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 7))
+Collecting scikit-learn>=0.15.0 (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 7))
+  Downloading scikit_learn-0.19.1-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl (7.6MB)
+    100% |████████████████████████████████| 7.6MB 217kB/s 
+Collecting pyarrow>=0.4.0 (from feather-format->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 8))
+  Downloading pyarrow-0.8.0-cp36-cp36m-macosx_10_6_intel.whl (6.6MB)
+    100% |████████████████████████████████| 6.6MB 238kB/s 
+Collecting jupyter-nbextensions-configurator>=0.4.0 (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading jupyter_nbextensions_configurator-0.4.0-py2.py3-none-any.whl (466kB)
+    100% |████████████████████████████████| 471kB 2.5MB/s 
+Collecting jupyter-highlight-selected-word>=0.0.10 (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading jupyter_highlight_selected_word-0.1.0-py2.py3-none-any.whl
+Requirement already satisfied: pyyaml in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: ipython-genutils in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting lxml (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading lxml-4.2.1-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl (8.7MB)
+    100% |████████████████████████████████| 8.7MB 180kB/s 
+Requirement already satisfied: notebook>=4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: jupyter-core in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting jupyter-contrib-core>=0.3.3 (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading jupyter_contrib_core-0.3.3-py2.py3-none-any.whl
+Requirement already satisfied: tornado in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting jupyter-latex-envs>=1.3.8 (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+  Downloading jupyter_latex_envs-1.4.4.tar.gz (855kB)
+    100% |████████████████████████████████| 860kB 1.6MB/s 
+Requirement already satisfied: nbconvert>=4.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: traitlets>=4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting mizani>=0.4.1 (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+  Downloading mizani-0.4.6-py2.py3-none-any.whl (65kB)
+    100% |████████████████████████████████| 71kB 6.1MB/s 
+Requirement already satisfied: statsmodels>=0.8.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Requirement already satisfied: matplotlib>=2.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Requirement already satisfied: patsy>=0.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Collecting rsa<=3.5.0,>=3.1.2 (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Using cached rsa-3.4.2-py2.py3-none-any.whl
+Collecting s3transfer<0.2.0,>=0.1.12 (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Downloading s3transfer-0.1.13-py2.py3-none-any.whl (59kB)
+    100% |████████████████████████████████| 61kB 6.6MB/s 
+Collecting colorama<=0.3.7,>=0.2.5 (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Downloading colorama-0.3.7-py2.py3-none-any.whl
+Requirement already satisfied: docutils>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+Collecting botocore==1.9.16 (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Downloading botocore-1.9.16-py2.py3-none-any.whl (4.1MB)
+    100% |████████████████████████████████| 4.1MB 364kB/s 
+Collecting cliff<2.9,>=2.8.0 (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading cliff-2.8.0.tar.gz (71kB)
+    100% |████████████████████████████████| 81kB 5.8MB/s 
+Collecting MechanicalSoup<0.9,>=0.7.0 (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading MechanicalSoup-0.8.0-py2.py3-none-any.whl
+Collecting cssselect<1.1,>=1.0.1 (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading cssselect-1.0.3-py2.py3-none-any.whl
+Collecting configparser (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading configparser-3.5.0.tar.gz
+Collecting progressbar2<3.35,>=3.34.3 (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading progressbar2-3.34.3-py2.py3-none-any.whl
+Collecting beautifulsoup4<4.7,>=4.6.0 (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading beautifulsoup4-4.6.0-py3-none-any.whl (86kB)
+    100% |████████████████████████████████| 92kB 6.5MB/s 
+Requirement already satisfied: ipykernel>=4.5.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: nbformat>=4.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: widgetsnbextension~=3.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: ipython>=4.0.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: python-dateutil>=2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 4))
+Requirement already satisfied: pytz>=2011k in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 4))
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: idna<2.7,>=2.5 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: urllib3<1.23,>=1.21.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: certifi>=2017.4.17 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 5))
+Requirement already satisfied: jinja2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: jupyter_client>=5.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: Send2Trash in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: terminado>=0.8.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: setuptools in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter-contrib-core>=0.3.3->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: mistune>=0.7.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: pygments in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: entrypoints>=0.2.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: bleach in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: pandocfilters>=1.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: testpath in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: decorator in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from traitlets>=4.1->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting palettable (from mizani>=0.4.1->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+  Downloading palettable-3.1.0-py2.py3-none-any.whl (78kB)
+    100% |████████████████████████████████| 81kB 7.7MB/s 
+Requirement already satisfied: cycler>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Requirement already satisfied: kiwisolver>=1.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 10))
+Collecting pyasn1>=0.1.3 (from rsa<=3.5.0,>=3.1.2->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Using cached pyasn1-0.4.2-py2.py3-none-any.whl
+Collecting jmespath<1.0.0,>=0.7.1 (from botocore==1.9.16->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 11))
+  Downloading jmespath-0.9.3-py2.py3-none-any.whl
+Collecting pbr!=2.1.0,>=2.0.0 (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Using cached pbr-3.1.1-py2.py3-none-any.whl
+Collecting cmd2>=0.6.7 (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading cmd2-0.8.2.tar.gz (170kB)
+    100% |████████████████████████████████| 174kB 4.9MB/s 
+Collecting PrettyTable<0.8,>=0.7.1 (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading prettytable-0.7.2.tar.bz2
+Collecting stevedore>=1.20.0 (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Using cached stevedore-1.28.0-py2.py3-none-any.whl
+Collecting python-utils>=2.1.0 (from progressbar2<3.35,>=3.34.3->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading python_utils-2.3.0-py2.py3-none-any.whl
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbformat>=4.2.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: jedi>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: pickleshare in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: simplegeneric>0.8 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: prompt_toolkit<2.0.0,>=1.0.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: appnope in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: pexpect in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: MarkupSafe>=0.23 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jinja2->notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: pyzmq>=13 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_client>=5.2.0->notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Requirement already satisfied: html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Collecting pyperclip (from cmd2>=0.6.7->cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 12))
+  Downloading pyperclip-1.6.0.tar.gz
+Requirement already satisfied: parso==0.1.* in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jedi>=0.10->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: wcwidth in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from prompt_toolkit<2.0.0,>=1.0.4->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 13))
+Requirement already satisfied: webencodings in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre->bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.7iA4ur.requirements.txt (line 9))
+Building wheels for collected packages: pandas-summary, feather-format, kaggle-cli, jupyter-latex-envs, cliff, configparser, cmd2, PrettyTable, pyperclip
+  Running setup.py bdist_wheel for pandas-summary ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/20/29/c9/b3d9f2cbdb6f1eeeb98e263ae687d72e8138a26de91058bd0b
+  Running setup.py bdist_wheel for feather-format ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/9d/de/23/0ca11012cc6b573de3f8187727cfa97a8392a8605e331214e5
+  Running setup.py bdist_wheel for kaggle-cli ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/f0/3c/ff/c98870eeb0ca26250ce6a60dc9be23f547b7ef68b3d6a1c0b5
+  Running setup.py bdist_wheel for jupyter-latex-envs ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/8d/1a/c8/3a9f5e0105eb88e1972cd06fcca65d8b904dafe67afacc566b
+  Running setup.py bdist_wheel for cliff ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/27/4c/aa/0f67aa384e67aacc5629321b1a3f85892362d4e9e5cd3a20f1
+  Running setup.py bdist_wheel for configparser ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/1c/bd/b4/277af3f6c40645661b4cd1c21df26aca0f2e1e9714a1d4cda8
+  Running setup.py bdist_wheel for cmd2 ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/1f/e1/ae/873458777d294b72291b2300bca9a5ffa6724dbe440e930a43
+  Running setup.py bdist_wheel for PrettyTable ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/0d/08/4d/38d1751a9e86f7f568d619e8e0662fb85241d17df8c90c5d8a
+  Running setup.py bdist_wheel for pyperclip ... done
+  Stored in directory: /Users/wsd/Library/Caches/pip/wheels/a9/22/c3/8116911c3273f6aa0a90ce69c44fb8a6a0e139d79aeda5a73e
+Successfully built pandas-summary feather-format kaggle-cli jupyter-latex-envs cliff configparser cmd2 PrettyTable pyperclip
+Installing collected packages: torchvision, opencv-python, isoweek, pandas-summary, torchtext, graphviz, scikit-learn, sklearn-pandas, pyarrow, feather-format, jupyter-contrib-core, jupyter-nbextensions-configurator, jupyter-highlight-selected-word, lxml, jupyter-latex-envs, jupyter-contrib-nbextensions, palettable, mizani, plotnine, pyasn1, rsa, jmespath, botocore, s3transfer, colorama, awscli, pbr, pyperclip, cmd2, PrettyTable, stevedore, cliff, beautifulsoup4, MechanicalSoup, cssselect, configparser, python-utils, progressbar2, kaggle-cli
+Successfully installed MechanicalSoup-0.8.0 PrettyTable-0.7.2 awscli-1.14.63 beautifulsoup4-4.6.0 botocore-1.9.16 cliff-2.8.0 cmd2-0.8.2 colorama-0.3.7 configparser-3.5.0 cssselect-1.0.3 feather-format-0.4.0 graphviz-0.8.2 isoweek-1.3.3 jmespath-0.9.3 jupyter-contrib-core-0.3.3 jupyter-contrib-nbextensions-0.4.0 jupyter-highlight-selected-word-0.1.0 jupyter-latex-envs-1.4.4 jupyter-nbextensions-configurator-0.4.0 kaggle-cli-0.12.13 lxml-4.2.1 mizani-0.4.6 opencv-python-3.4.0.12 palettable-3.1.0 pandas-summary-0.0.41 pbr-3.1.1 plotnine-0.3.0 progressbar2-3.34.3 pyarrow-0.8.0 pyasn1-0.4.2 pyperclip-1.6.0 python-utils-2.3.0 rsa-3.4.2 s3transfer-0.1.13 scikit-learn-0.19.1 sklearn-pandas-1.6.0 stevedore-1.28.0 torchtext-0.2.1 torchvision-0.2.0
+#
+# To activate this environment, use:
+# > source activate fastai
+#
+# To deactivate an active environment, use:
+# > source deactivate
+#
+
+testwhmbp:fastai wsd$ source activate fastai
+(fastai) testwhmbp:fastai wsd$ ls
+CODE-OF-CONDUCT.md	README.md		environment-cpu.yml	requirements.txt
+LICENSE			README.rst		environment-old.yml	setup.cfg
+MANIFEST		courses			environment.yml		setup.py
+MANIFEST.in		data			fastai			tutorials
+(fastai) testwhmbp:fastai wsd$ jupyter notebook
+[I 09:37:43.250 NotebookApp] Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+[I 09:37:43.251 NotebookApp] 0 active kernels
+[I 09:37:43.251 NotebookApp] The Jupyter Notebook is running at:
+[I 09:37:43.251 NotebookApp] http://localhost:8888/?token=a2e1af93cc6060a162a0631f398b0f8432f2437c84255e41
+[I 09:37:43.251 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 09:37:43.252 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=a2e1af93cc6060a162a0631f398b0f8432f2437c84255e41
+[I 09:37:43.903 NotebookApp] Accepting one-time-token-authenticated connection from ::1
+[W 09:37:44.392 NotebookApp] 404 GET /apple-touch-icon-precomposed.png (::1) 10.35ms referer=None
+[W 09:37:44.400 NotebookApp] 404 GET /apple-touch-icon.png (::1) 1.44ms referer=None
+[W 09:38:36.850 NotebookApp] Notebook courses/dl1/lesson1.ipynb is not trusted
+[I 09:38:38.840 NotebookApp] 302 GET /notebooks/courses/dl1/images/sgdr.png (::1) 1.12ms
+[I 09:38:40.016 NotebookApp] 302 GET /notebooks/courses/dl1/images/pretrained.png (::1) 1.09ms
+[I 09:38:40.469 NotebookApp] Kernel started: bafcbfb1-f331-44e0-93d5-8be5c70181be
+[I 09:38:41.775 NotebookApp] Adapting to protocol v5.1 for kernel bafcbfb1-f331-44e0-93d5-8be5c70181be
+[I 09:40:40.528 NotebookApp] Saving file at /courses/dl1/lesson1.ipynb
+[W 09:40:40.531 NotebookApp] Notebook courses/dl1/lesson1.ipynb is not trusted
+[I 09:43:05.404 NotebookApp] Starting buffering for bafcbfb1-f331-44e0-93d5-8be5c70181be:07f4d78fec144dcc8ffc18e49f579721
+^C[I 09:43:10.806 NotebookApp] interrupted
+Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+1 active kernel
+The Jupyter Notebook is running at:
+http://localhost:8888/?token=a2e1af93cc6060a162a0631f398b0f8432f2437c84255e41
+Shutdown this notebook server (y/[n])? y
+[C 09:43:13.428 NotebookApp] Shutdown confirmed
+[I 09:43:13.429 NotebookApp] Shutting down 1 kernel
+[I 09:43:13.738 NotebookApp] Kernel shutdown: bafcbfb1-f331-44e0-93d5-8be5c70181be
+(fastai) testwhmbp:fastai wsd$ conda env create -f environment.yml 
+Using Anaconda API: https://api.anaconda.org
+
+CondaValueError: prefix already exists: /Users/wsd/anaconda/envs/fastai
+
+(fastai) testwhmbp:fastai wsd$ conda env update
+Using Anaconda API: https://api.anaconda.org
+Solving environment: failed
+
+UnsatisfiableError: The following specifications were found to be in conflict:
+  - pil -> python=2.7
+  - python[version='>=3.6.0']
+Use "conda info <package>" to see the dependencies for each package.
+
+(fastai) testwhmbp:fastai wsd$ jupyter notebook
+[I 09:45:13.267 NotebookApp] Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+[I 09:45:13.267 NotebookApp] 0 active kernels
+[I 09:45:13.267 NotebookApp] The Jupyter Notebook is running at:
+[I 09:45:13.267 NotebookApp] http://localhost:8888/?token=da88fea4bcaf24f0c17537e75ba1c712475f849a6917231b
+[I 09:45:13.268 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 09:45:13.268 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=da88fea4bcaf24f0c17537e75ba1c712475f849a6917231b
+[I 09:45:13.753 NotebookApp] Accepting one-time-token-authenticated connection from ::1
+[W 09:45:22.527 NotebookApp] Notebook courses/dl1/lesson1.ipynb is not trusted
+[I 09:45:24.358 NotebookApp] 302 GET /notebooks/courses/dl1/images/sgdr.png (::1) 0.95ms
+[I 09:45:25.489 NotebookApp] 302 GET /notebooks/courses/dl1/images/pretrained.png (::1) 0.94ms
+[I 09:45:25.938 NotebookApp] Kernel started: 4a17905c-c508-4d9d-a904-f2ae9dfe1da7
+[I 09:45:27.005 NotebookApp] Adapting to protocol v5.1 for kernel 4a17905c-c508-4d9d-a904-f2ae9dfe1da7
+[I 09:47:25.960 NotebookApp] Saving file at /courses/dl1/lesson1.ipynb
+[W 09:47:25.997 NotebookApp] Notebook courses/dl1/lesson1.ipynb is not trusted
+^C[I 09:54:58.695 NotebookApp] interrupted
+Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+1 active kernel
+The Jupyter Notebook is running at:
+http://localhost:8888/?token=da88fea4bcaf24f0c17537e75ba1c712475f849a6917231b
+Shutdown this notebook server (y/[n])? y
+[C 09:55:00.501 NotebookApp] Shutdown confirmed
+[I 09:55:00.502 NotebookApp] Shutting down 1 kernel
+[I 09:55:00.806 NotebookApp] Kernel shutdown: 4a17905c-c508-4d9d-a904-f2ae9dfe1da7
+(fastai) testwhmbp:fastai wsd$ source deactivate
+testwhmbp:fastai wsd$ conda env update -f environment.yml
+Using Anaconda API: https://api.anaconda.org
+Solving environment: failed
+
+UnsatisfiableError: The following specifications were found to be in conflict:
+  - pil -> python=2.7
+  - python[version='>=3.6.0']
+Use "conda info <package>" to see the dependencies for each package.
+
+testwhmbp:fastai wsd$ conda info pil
+
+pil 1.1.7 py26_0
+----------------
+file name   : pil-1.1.7-py26_0.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py26_0
+build number: 0
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 367 KB
+arch        : x86_64
+constrains  : ()
+date        : 2014-01-01
+license_family: Other
+md5         : 9a0ca43038e0a80fad35a0bde4ee050d
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py26_0.tar.bz2
+dependencies:
+    freetype 2.4*
+    jpeg 8d
+    python 2.6*
+    zlib 1.2*
+
+pil 1.1.7 py27_2
+----------------
+file name   : pil-1.1.7-py27_2.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py27_2
+build number: 2
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 369 KB
+arch        : x86_64
+constrains  : ()
+date        : 2015-05-27
+license     : PIL license (http://www.pythonware.com/products/pil/license.htm)
+license_family: Other
+md5         : 26e679e58cd16dadca492a3202ae421c
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py27_2.tar.bz2
+dependencies:
+    freetype 2.5*
+    jpeg 8d
+    lcms 1.19
+    python 2.7*
+    zlib 1.2*
+
+pil 1.1.7 py27_0
+----------------
+file name   : pil-1.1.7-py27_0.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py27_0
+build number: 0
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 368 KB
+arch        : x86_64
+constrains  : ()
+date        : 2014-01-01
+license_family: Other
+md5         : eba7191a0f954502906074d6101f35b4
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py27_0.tar.bz2
+dependencies:
+    freetype 2.4*
+    jpeg 8d
+    python 2.7*
+    zlib 1.2*
+
+pil 1.1.7 py26_1
+----------------
+file name   : pil-1.1.7-py26_1.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py26_1
+build number: 1
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 372 KB
+arch        : x86_64
+constrains  : ()
+date        : 2014-02-26
+license     : PIL license (http://www.pythonware.com/products/pil/license.htm)
+license_family: Other
+md5         : 144bb521e98f94840a19d3c8132d5346
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py26_1.tar.bz2
+dependencies:
+    freetype 2.4*
+    jpeg 8d
+    lcms 1.19
+    python 2.6*
+    zlib 1.2*
+
+pil 1.1.7 py26_2
+----------------
+file name   : pil-1.1.7-py26_2.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py26_2
+build number: 2
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 368 KB
+arch        : x86_64
+constrains  : ()
+date        : 2015-05-27
+license     : PIL license (http://www.pythonware.com/products/pil/license.htm)
+license_family: Other
+md5         : 5b8d1d82b7d703fd4de9d8098b483c84
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py26_2.tar.bz2
+dependencies:
+    freetype 2.5*
+    jpeg 8d
+    lcms 1.19
+    python 2.6*
+    zlib 1.2*
+
+pil 1.1.7 py27_1
+----------------
+file name   : pil-1.1.7-py27_1.tar.bz2
+name        : pil
+version     : 1.1.7
+build string: py27_1
+build number: 1
+channel     : https://repo.anaconda.com/pkgs/free/osx-64
+size        : 372 KB
+arch        : x86_64
+constrains  : ()
+date        : 2014-02-26
+license     : PIL license (http://www.pythonware.com/products/pil/license.htm)
+license_family: Other
+md5         : 9cb46d75aebf5bcaaaae5650008af7c7
+platform    : darwin
+subdir      : osx-64
+url         : https://repo.anaconda.com/pkgs/free/osx-64/pil-1.1.7-py27_1.tar.bz2
+dependencies:
+    freetype 2.4*
+    jpeg 8d
+    lcms 1.19
+    python 2.7*
+    zlib 1.2*
+testwhmbp:fastai wsd$ conda env update -f environment.yml
+Using Anaconda API: https://api.anaconda.org
+Solving environment: done
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Requirement already satisfied: torchvision>=0.1.9 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 1))
+Requirement already satisfied: opencv-python in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 2))
+Requirement already satisfied: isoweek in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 3))
+Requirement already satisfied: pandas_summary in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 4))
+Requirement already satisfied: torchtext in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: graphviz in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 6))
+Requirement already satisfied: sklearn_pandas in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 7))
+Requirement already satisfied: feather-format in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 8))
+Requirement already satisfied: jupyter_contrib_nbextensions in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: plotnine in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: awscli in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: kaggle-cli in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: ipywidgets in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: Pillow in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 15))
+Requirement already satisfied: six in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 1))
+Requirement already satisfied: numpy in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 1))
+Requirement already satisfied: torch in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 1))
+Requirement already satisfied: pandas in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 4))
+Requirement already satisfied: requests in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: tqdm in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: scikit-learn>=0.15.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 7))
+Requirement already satisfied: scipy>=0.14 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 7))
+Requirement already satisfied: pyarrow>=0.4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from feather-format->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 8))
+Requirement already satisfied: jupyter-highlight-selected-word>=0.0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: tornado in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jupyter-nbextensions-configurator>=0.4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jupyter-core in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: lxml in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: traitlets>=4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: ipython-genutils in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jupyter-contrib-core>=0.3.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: notebook>=4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: nbconvert>=4.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: pyyaml in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jupyter-latex-envs>=1.3.8 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: patsy>=0.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: mizani>=0.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: statsmodels>=0.8.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: matplotlib>=2.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: colorama<=0.3.7,>=0.2.5 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: s3transfer<0.2.0,>=0.1.12 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: docutils>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: rsa<=3.5.0,>=3.1.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: botocore==1.9.16 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: MechanicalSoup<0.9,>=0.7.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: beautifulsoup4<4.7,>=4.6.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: progressbar2<3.35,>=3.34.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: cliff<2.9,>=2.8.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: cssselect<1.1,>=1.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: configparser in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: ipykernel>=4.5.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: nbformat>=4.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: widgetsnbextension~=3.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: ipython>=4.0.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: python-dateutil>=2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 4))
+Requirement already satisfied: pytz>=2011k in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 4))
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: idna<2.7,>=2.5 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: urllib3<1.23,>=1.21.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: certifi>=2017.4.17 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 5))
+Requirement already satisfied: decorator in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from traitlets>=4.1->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: setuptools in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter-contrib-core>=0.3.3->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jinja2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: jupyter_client>=5.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: Send2Trash in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: terminado>=0.8.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: mistune>=0.7.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: pygments in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: entrypoints>=0.2.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: bleach in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: pandocfilters>=1.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: testpath in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: palettable in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from mizani>=0.4.1->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: cycler>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: kiwisolver>=1.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 10))
+Requirement already satisfied: pyasn1>=0.1.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from rsa<=3.5.0,>=3.1.2->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: jmespath<1.0.0,>=0.7.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from botocore==1.9.16->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 11))
+Requirement already satisfied: python-utils>=2.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from progressbar2<3.35,>=3.34.3->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: PrettyTable<0.8,>=0.7.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: cmd2>=0.6.7 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: pbr!=2.1.0,>=2.0.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: stevedore>=1.20.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbformat>=4.2.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: jedi>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: pickleshare in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: simplegeneric>0.8 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: prompt_toolkit<2.0.0,>=1.0.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: appnope in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: pexpect in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: MarkupSafe>=0.23 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jinja2->notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: pyzmq>=13 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_client>=5.2.0->notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+Requirement already satisfied: pyperclip in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cmd2>=0.6.7->cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 12))
+Requirement already satisfied: parso==0.1.* in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jedi>=0.10->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: wcwidth in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from prompt_toolkit<2.0.0,>=1.0.4->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 13))
+Requirement already satisfied: webencodings in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre->bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.HsGo8y.requirements.txt (line 9))
+#
+# To activate this environment, use
+#
+#     $ conda activate fastai
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+testwhmbp:fastai wsd$ source activate fastai
+(fastai) testwhmbp:fastai wsd$ conda env update 
+Using Anaconda API: https://api.anaconda.org
+Solving environment: done
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Requirement already satisfied: torchvision>=0.1.9 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 1))
+Requirement already satisfied: opencv-python in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 2))
+Requirement already satisfied: isoweek in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 3))
+Requirement already satisfied: pandas_summary in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 4))
+Requirement already satisfied: torchtext in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: graphviz in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 6))
+Requirement already satisfied: sklearn_pandas in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 7))
+Requirement already satisfied: feather-format in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 8))
+Requirement already satisfied: jupyter_contrib_nbextensions in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: plotnine in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: awscli in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: kaggle-cli in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: ipywidgets in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: Pillow in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from -r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 15))
+Requirement already satisfied: numpy in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 1))
+Requirement already satisfied: torch in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 1))
+Requirement already satisfied: six in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchvision>=0.1.9->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 1))
+Requirement already satisfied: pandas in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 4))
+Requirement already satisfied: tqdm in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: requests in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: scikit-learn>=0.15.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 7))
+Requirement already satisfied: scipy>=0.14 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from sklearn_pandas->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 7))
+Requirement already satisfied: pyarrow>=0.4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from feather-format->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 8))
+Requirement already satisfied: jupyter-core in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jupyter-nbextensions-configurator>=0.4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: nbconvert>=4.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jupyter-latex-envs>=1.3.8 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: lxml in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: pyyaml in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jupyter-contrib-core>=0.3.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: tornado in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: traitlets>=4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: notebook>=4.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: ipython-genutils in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jupyter-highlight-selected-word>=0.0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: patsy>=0.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: mizani>=0.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: matplotlib>=2.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: statsmodels>=0.8.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: docutils>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: botocore==1.9.16 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: s3transfer<0.2.0,>=0.1.12 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: colorama<=0.3.7,>=0.2.5 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: rsa<=3.5.0,>=3.1.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: progressbar2<3.35,>=3.34.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: MechanicalSoup<0.9,>=0.7.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: configparser in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: beautifulsoup4<4.7,>=4.6.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: cssselect<1.1,>=1.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: cliff<2.9,>=2.8.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: ipykernel>=4.5.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: nbformat>=4.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: widgetsnbextension~=3.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: ipython>=4.0.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: python-dateutil>=2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 4))
+Requirement already satisfied: pytz>=2011k in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from pandas->pandas_summary->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 4))
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: idna<2.7,>=2.5 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: urllib3<1.23,>=1.21.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: certifi>=2017.4.17 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from requests->torchtext->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 5))
+Requirement already satisfied: mistune>=0.7.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jinja2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: pygments in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: entrypoints>=0.2.2 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: bleach in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: pandocfilters>=1.4.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: testpath in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: setuptools in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter-contrib-core>=0.3.3->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: decorator in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from traitlets>=4.1->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: jupyter_client>=5.2.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: Send2Trash in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: terminado>=0.8.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: palettable in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from mizani>=0.4.1->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: cycler>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: kiwisolver>=1.0.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from matplotlib>=2.1.0->plotnine->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 10))
+Requirement already satisfied: jmespath<1.0.0,>=0.7.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from botocore==1.9.16->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: pyasn1>=0.1.3 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from rsa<=3.5.0,>=3.1.2->awscli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 11))
+Requirement already satisfied: python-utils>=2.1.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from progressbar2<3.35,>=3.34.3->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: stevedore>=1.20.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: PrettyTable<0.8,>=0.7.1 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: pbr!=2.1.0,>=2.0.0 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: cmd2>=0.6.7 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from nbformat>=4.2.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: jedi>=0.10 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: pickleshare in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: simplegeneric>0.8 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: prompt_toolkit<2.0.0,>=1.0.4 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: appnope in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: pexpect in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: MarkupSafe>=0.23 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jinja2->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: pyzmq>=13 in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jupyter_client>=5.2.0->notebook>=4.0->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+Requirement already satisfied: pyperclip in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from cmd2>=0.6.7->cliff<2.9,>=2.8.0->kaggle-cli->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 12))
+Requirement already satisfied: parso==0.1.* in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from jedi>=0.10->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: wcwidth in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from prompt_toolkit<2.0.0,>=1.0.4->ipython>=4.0.0->ipywidgets->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 13))
+Requirement already satisfied: webencodings in /Users/wsd/anaconda/envs/fastai/lib/python3.6/site-packages (from html5lib!=1.0b1,!=1.0b2,!=1.0b3,!=1.0b4,!=1.0b5,!=1.0b6,!=1.0b7,!=1.0b8,>=0.99999999pre->bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /Users/wsd/Downloads/github-rep/fastai/condaenv.otLFRl.requirements.txt (line 9))
+#
+# To activate this environment, use
+#
+#     $ conda activate fastai
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+(fastai) testwhmbp:fastai wsd$ jupyter notebook
+[I 09:59:54.334 NotebookApp] Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+[I 09:59:54.334 NotebookApp] 0 active kernels
+[I 09:59:54.334 NotebookApp] The Jupyter Notebook is running at:
+[I 09:59:54.334 NotebookApp] http://localhost:8888/?token=43dfc0921218f30cbc58ba0c6eb2d7ae7e8875c7d4f7e3ea
+[I 09:59:54.334 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 09:59:54.335 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=43dfc0921218f30cbc58ba0c6eb2d7ae7e8875c7d4f7e3ea
+[I 09:59:55.017 NotebookApp] Accepting one-time-token-authenticated connection from ::1
+[W 10:00:04.331 NotebookApp] Notebook courses/dl1/lesson1.ipynb is not trusted
+[I 10:00:06.175 NotebookApp] 302 GET /notebooks/courses/dl1/images/sgdr.png (::1) 1.06ms
+[I 10:00:07.389 NotebookApp] 302 GET /notebooks/courses/dl1/images/pretrained.png (::1) 1.08ms
+[I 10:00:07.838 NotebookApp] Kernel started: d8e04fc5-d9e7-4c79-96e5-cc79fde0657e
+[I 10:00:09.073 NotebookApp] Adapting to protocol v5.1 for kernel d8e04fc5-d9e7-4c79-96e5-cc79fde0657e
+^C[I 10:00:56.446 NotebookApp] interrupted
+Serving notebooks from local directory: /Users/wsd/Downloads/github-rep/fastai
+1 active kernel
+The Jupyter Notebook is running at:
+http://localhost:8888/?token=43dfc0921218f30cbc58ba0c6eb2d7ae7e8875c7d4f7e3ea
+Shutdown this notebook server (y/[n])? y
+[C 10:00:57.637 NotebookApp] Shutdown confirmed
+[I 10:00:57.638 NotebookApp] Shutting down 1 kernel
+[I 10:00:57.951 NotebookApp] Kernel shutdown: d8e04fc5-d9e7-4c79-96e5-cc79fde0657e
+exit
+(fastai) testwhmbp:fastai wsd$ exit
+logout
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+
+[Process completed]
+

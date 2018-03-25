@@ -6,7 +6,9 @@ channels:
 - peterjc123
 dependencies:
 - scipy
-- cuda90
+- cudatoolkit # try cudatoolkit desperately (cuda90 only in windows and linux)
+  #-cuda90 #and others also not working
+  # no pil - conda py 2.7 - pil # not sure what is this but one step miss this
 - cudnn
 - numpy
 - pillow
@@ -63,6 +65,7 @@ dependencies:
 - pexpect
 - pickleshare
 - pillow
+  # - pil # not for py2.7
 - pip
 - prompt_toolkit
   #- ptyprocess
@@ -114,5 +117,6 @@ dependencies:
   - kaggle-cli
   - ipywidgets
   - jupyter_contrib_nbextensions
+  - Pillow # seems not working ...
     #- git+https://github.com/SauceCat/PDPbox.git
 
